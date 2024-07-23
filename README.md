@@ -13,5 +13,8 @@
 # Jalankan Kode
 <li>Untuk menjalankan buka folder yang anda dowload di VS Code, dan buka terminal CLI kemudian ketikan seperti di bawah :</li>
 <li>C:/YOUR_FOLDER/>npm install . </li>
-<li>Perintah <b>npm install . </b> untuk mendowload dependence yang di butuhkan.</li>
-<li>Setelah itu upload file </li>
+<li>Perintah <b>npm install . </b> untuk mendowload dependency yang di butuhkan.</li>
+<li>Setelah itu upload file <b>chat_db.sql</b> di <b>PhpMyadmin</b> di sarankan! sertakan jalankan server mysql</li>
+<li>Kemudian untuk menjalankan server aplikasi ketikan seperti di bawah :</li>
+<li>$ <b>nodemon</b></li>
+<li>Secara otomatis akan berjalan.</li>
