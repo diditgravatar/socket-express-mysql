@@ -1,0 +1,13 @@
+<script>
+  const socket = io();
+  // Mengambil data user
+  socket.on("loadUser", (user) => {
+    const userContainer = document.getElementById("datauser");
+    userContainer.innerHTML = "";
+    user.forEach((usr) => {
+      const userElement = document.createElement("div");
+      userElement.textContent = `${usr.id} : ${usr.name}`;
+      userContainer.appendChild(userElement);
+    });
+  });
+</script>

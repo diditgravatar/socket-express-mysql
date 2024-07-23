@@ -1,0 +1,88 @@
+<div class="container">
+  <h1>Socket.IO with MySQL</h1>
+  <div id="messages"></div>
+  <input
+    class="from-controls"
+    type="text"
+    id="message-input"
+    placeholder="Type a message"
+  />
+  <button id="send-button">Send</button>
+  <input type="text" id="update-id" placeholder="Message ID to update" />
+  <input type="text" id="update-input" placeholder="New message content" />
+  <button id="update-button">Update</button>
+  <input type="text" id="delete-id" placeholder="Message ID to delete" />
+  <button id="delete-button">Delete</button>
+  <a href="/home">Home</a>
+
+  <script>
+    const socket = io();
+
+    // Menangani pesan baru
+    socket.on("loadMessages", (messages) => {
+      const messagesContainer = document.getElementById("messages");
+      messagesContainer.innerHTML = ""; // Clear existing messages
+      messages.forEach((msg) => {
+        const messageElement = document.createElement("div");
+        messageElement.textContent = `${msg.id}: ${msg.content}`;
+        messagesContainer.appendChild(messageElement);
+      });
+    });
+
+    socket.on("newMessage", (message) => {
+      const messagesContainer = document.getElementById("messages");
+      const messageElement = document.createElement("div");
+      messageElement.textContent = `${message.id}: ${message.content}`;
+      messagesContainer.appendChild(messageElement);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+
+    socket.on("messageUpdated", (message) => {
+      const messagesContainer = document.getElementById("messages");
+      const messageElements = messagesContainer.children;
+      for (let element of messageElements) {
+        if (element.textContent.startsWith(message.id)) {
+          element.textContent = `${message.id}: ${message.newContent}`;
+          break;
+        }
+      }
+    });
+
+    socket.on("messageDeleted", (id) => {
+      const messagesContainer = document.getElementById("messages");
+      const messageElements = messagesContainer.children;
+      for (let element of messageElements) {
+        if (element.textContent.startsWith(id)) {
+          messagesContainer.removeChild(element);
+          break;
+        }
+      }
+    });
+
+    document.getElementById("send-button").addEventListener("click", () => {
+      const message = document.getElementById("message-input").value;
+      if (message) {
+        socket.emit("createMessage", message);
+        document.getElementById("message-input").value = "";
+      }
+    });
+
+    document.getElementById("update-button").addEventListener("click", () => {
+      const id = document.getElementById("update-id").value;
+      const newContent = document.getElementById("update-input").value;
+      if (id && newContent) {
+        socket.emit("updateMessage", { id, newContent });
+        document.getElementById("update-id").value = "";
+        document.getElementById("update-input").value = "";
+      }
+    });
+
+    document.getElementById("delete-button").addEventListener("click", () => {
+      const id = document.getElementById("delete-id").value;
+      if (id) {
+        socket.emit("deleteMessage", id);
+        document.getElementById("delete-id").value = "";
+      }
+    });
+  </script>
+</div>
