@@ -18,4 +18,4 @@
 <li>Jangan lupa buka file <b>database.js</b> untuk setting konfigurasi koneksi database</li>
 <li>Kemudian untuk menjalankan server aplikasi ketikan seperti di bawah :</li>
 <li>$ <b>nodemon</b></li>
-<li>Secara otomatis akan berjalan.</li>
+<li>Secara otomatis server akan berjalan.</li>
