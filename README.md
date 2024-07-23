@@ -4,4 +4,3 @@
   <li>Hanya sebagai tahap pembelajaran tentang koneki socket yang bisa menjadi jembatan antara mysql dan aplikasi untuk bertukar data.</li>
 </ul>
 # Uji Coba Kode Sumber
-<aside>Test</aside>
