@@ -13,3 +13,5 @@
 # Jalankan Kode
 <li>Untuk menjalankan buka folder yang anda dowload di VS Code, dan buka terminal CLI kemudian ketikan seperti di bawah :</li>
 <li>C:/YOUR_FOLDER/>npm install . </li>
+<li>Perintah <b>npm install . </b> untuk mendowload dependence yang di butuhkan.</li>
+<li>Setelah itu upload file </li>
